@@ -42,7 +42,6 @@ class _ProjectItemState extends State<ProjectItem> {
                     height: 500,
                     child: Swiper(
                       itemCount: project.images.length,
-                      autoplay: true,
                       itemWidth: 250,
                       viewportFraction: .85,
                       scale: .9,
