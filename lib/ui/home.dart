@@ -18,6 +18,33 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  final _headerGlobalKey = GlobalKey();
+  final _aboutGlobaleKey = GlobalKey();
+  final _statisticsGlobaleKey = GlobalKey();
+  final _workingProcessGlobaleKye = GlobalKey();
+  final _recentProjectsGlobaleKey = GlobalKey();
+  final _contactUsGlobaleKey = GlobalKey();
+
+  final _scrollController = ScrollController();
+
+  bool _showUpBotton = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController.addListener(() {
+      if (_scrollController.offset < 500 && _showUpBotton) {
+        setState(() {
+          _showUpBotton = false;
+        });
+      } else if (_scrollController.offset >= 500 && !_showUpBotton) {
+        setState(() {
+          _showUpBotton = true;
+        });
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return ResponsiveWidget(
@@ -30,8 +57,10 @@ class _HomeState extends State<Home> {
             ),
           ),
           child: CustomScrollView(
+            controller: _scrollController,
             slivers: [
               SliverAppBar(
+                key: _headerGlobalKey,
                 titleSpacing: 0,
                 toolbarHeight: 100,
                 backgroundColor: Colors.transparent,
@@ -84,16 +113,16 @@ class _HomeState extends State<Home> {
                   Row(
                     children: [
                       MaterialButton(
-                        onPressed: () {},
+                        onPressed: _scrollToAbout,
                         highlightColor: Colors.white60,
                         child: Text(
-                          'HOME',
+                          'About Me',
                           style: TextStyle(
                               color: Colors.white, fontWeight: FontWeight.bold),
                         ),
                       ),
                       MaterialButton(
-                        onPressed: () {},
+                        onPressed: _scrollToStatistics,
                         child: Text(
                           'Experience',
                           style: TextStyle(
@@ -101,15 +130,7 @@ class _HomeState extends State<Home> {
                         ),
                       ),
                       MaterialButton(
-                        onPressed: () {},
-                        child: Text(
-                          'Skills',
-                          style: TextStyle(
-                              color: Colors.white, fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      MaterialButton(
-                        onPressed: () {},
+                        onPressed: _scrollToWorkingProcess,
                         child: Text(
                           'Process',
                           style: TextStyle(
@@ -117,7 +138,7 @@ class _HomeState extends State<Home> {
                         ),
                       ),
                       MaterialButton(
-                        onPressed: () {},
+                        onPressed: _scrollToRecentProjects,
                         child: Text(
                           'Portfolio',
                           style: TextStyle(
@@ -126,7 +147,7 @@ class _HomeState extends State<Home> {
                       ),
                       const SizedBox(width: 20),
                       RaisedButton(
-                        onPressed: () {},
+                        onPressed: _scrollToContactUs,
                         color: AppColors.yellow,
                         padding: const EdgeInsets.symmetric(
                           horizontal: 40,
@@ -143,88 +164,69 @@ class _HomeState extends State<Home> {
                   SizedBox(width: MediaQuery.of(context).size.width * .15),
                 ],
               ),
-              SliverToBoxAdapter(
-                child: About(),
-              ),
-              SliverToBoxAdapter(
-                child: Statistics(),
-              ),
-              SliverToBoxAdapter(
-                child: WorkingProcess(),
-              ),
-              SliverToBoxAdapter(
-                child: RecentProjects(),
-              ),
-              SliverToBoxAdapter(
-                child: ContactUs(),
-              ),
-              SliverToBoxAdapter(
-                child: Footer(),
-              ),
+              ..._slivers(),
             ],
           ),
         ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {},
-          child: Icon(
-            Icons.keyboard_arrow_up_sharp,
-            color: Colors.white,
-            size: 40,
-          ),
-        ),
+        floatingActionButton: _showUpBotton
+            ? FloatingActionButton(
+                onPressed: _scrollToHeader,
+                mini: true,
+                child: Icon(
+                  Icons.keyboard_arrow_up_sharp,
+                  color: Colors.white,
+                  size: 40,
+                ),
+              )
+            : const SizedBox(),
       ),
       mobileScreen: Scaffold(
         drawer: Drawer(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              MaterialButton(
-                onPressed: () {},
-                highlightColor: Colors.white60,
-                child: Text(
-                  'HOME',
+              ListTile(
+                onTap: _scrollToAbout,
+                title: Text(
+                  'About Me',
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
               ),
-              MaterialButton(
-                onPressed: () {},
-                child: Text(
+              ListTile(
+                onTap: _scrollToStatistics,
+                title: Text(
                   'Experience',
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
               ),
-              MaterialButton(
-                onPressed: () {},
-                child: Text(
-                  'Skills',
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-              ),
-              MaterialButton(
-                onPressed: () {},
-                child: Text(
+              ListTile(
+                onTap: _scrollToWorkingProcess,
+                title: Text(
                   'Process',
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
               ),
-              MaterialButton(
-                onPressed: () {},
-                child: Text(
+              ListTile(
+                onTap: _scrollToRecentProjects,
+                title: Text(
                   'Portfolio',
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
               ),
               const SizedBox(width: 20),
-              RaisedButton(
-                onPressed: () {},
-                color: AppColors.yellow,
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 40,
-                  vertical: 15,
-                ),
-                child: Text(
-                  'Contact Me',
-                  style: TextStyle(
-                      color: Colors.white, fontWeight: FontWeight.bold),
+              Align(
+                alignment: Alignment.center,
+                child: RaisedButton(
+                  onPressed: _scrollToContactUs,
+                  color: AppColors.yellow,
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 40,
+                    vertical: 15,
+                  ),
+                  child: Text(
+                    'Contact Me',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
                 ),
               ),
             ],
@@ -238,8 +240,10 @@ class _HomeState extends State<Home> {
             ),
           ),
           child: CustomScrollView(
+            controller: _scrollController,
             slivers: [
               SliverAppBar(
+                key: _headerGlobalKey,
                 titleSpacing: 0,
                 centerTitle: true,
                 backgroundColor: Colors.transparent,
@@ -264,23 +268,18 @@ class _HomeState extends State<Home> {
                     ),
                   ),
                 ),
-                title: Padding(
-                  padding: EdgeInsets.only(
-                    left: MediaQuery.of(context).size.width * .15,
+                title: Container(
+                  width: 40,
+                  height: 40,
+                  decoration: BoxDecoration(
+                    color: AppColors.yellow,
+                    borderRadius: BorderRadius.circular(1000),
                   ),
-                  child: Container(
-                    width: 40,
-                    height: 40,
-                    decoration: BoxDecoration(
-                      color: AppColors.yellow,
-                      borderRadius: BorderRadius.circular(1000),
-                    ),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(1000),
-                      child: Image.asset(
-                        'images/ouahid.png',
-                        fit: BoxFit.cover,
-                      ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(1000),
+                    child: Image.asset(
+                      'images/ouahid.png',
+                      fit: BoxFit.cover,
                     ),
                   ),
                 ),
@@ -289,37 +288,90 @@ class _HomeState extends State<Home> {
                   child: Header(),
                 ),
               ),
-              SliverToBoxAdapter(
-                child: About(),
-              ),
-              SliverToBoxAdapter(
-                child: Statistics(),
-              ),
-              SliverToBoxAdapter(
-                child: WorkingProcess(),
-              ),
-              SliverToBoxAdapter(
-                child: RecentProjects(),
-              ),
-              SliverToBoxAdapter(
-                child: ContactUs(),
-              ),
-              SliverToBoxAdapter(
-                child: Footer(),
-              ),
+              ..._slivers(),
             ],
           ),
         ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {},
-          mini: true,
-          child: Icon(
-            Icons.keyboard_arrow_up_sharp,
-            color: Colors.white,
-            size: 40,
-          ),
-        ),
+        floatingActionButton: _showUpBotton
+            ? FloatingActionButton(
+                onPressed: _scrollToHeader,
+                mini: true,
+                child: Icon(
+                  Icons.keyboard_arrow_up_sharp,
+                  color: Colors.white,
+                  size: 40,
+                ),
+              )
+            : const SizedBox(),
       ),
+    );
+  }
+
+  List<Widget> _slivers() => [
+        SliverToBoxAdapter(
+          key: _aboutGlobaleKey,
+          child: About(),
+        ),
+        SliverToBoxAdapter(
+          key: _statisticsGlobaleKey,
+          child: Statistics(),
+        ),
+        SliverToBoxAdapter(
+          key: _workingProcessGlobaleKye,
+          child: WorkingProcess(),
+        ),
+        SliverToBoxAdapter(
+          key: _recentProjectsGlobaleKey,
+          child: RecentProjects(),
+        ),
+        SliverToBoxAdapter(
+          key: _contactUsGlobaleKey,
+          child: ContactUs(),
+        ),
+        SliverToBoxAdapter(
+          child: Footer(),
+        ),
+      ];
+
+  void _scrollToHeader() {
+    Scrollable.ensureVisible(
+      _headerGlobalKey.currentContext,
+      duration: const Duration(seconds: 1),
+    );
+  }
+
+  void _scrollToAbout() {
+    Scrollable.ensureVisible(
+      _aboutGlobaleKey.currentContext,
+      duration: const Duration(seconds: 1),
+    );
+  }
+
+  void _scrollToStatistics() {
+    Scrollable.ensureVisible(
+      _statisticsGlobaleKey.currentContext,
+      duration: const Duration(seconds: 1),
+    );
+  }
+
+  void _scrollToWorkingProcess() {
+    Scrollable.ensureVisible(
+      _workingProcessGlobaleKye.currentContext,
+      duration: const Duration(seconds: 1),
+    );
+  }
+
+  void _scrollToRecentProjects() {
+    Scrollable.ensureVisible(
+      _recentProjectsGlobaleKey.currentContext,
+      duration: const Duration(seconds: 1),
+    );
+  }
+
+  void _scrollToContactUs() {
+    Scrollable.ensureVisible(
+      _contactUsGlobaleKey.currentContext,
+      duration: const Duration(seconds: 1),
     );
   }
 }

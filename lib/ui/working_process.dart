@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_web_portfolio/ui/responsive_widget.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../config/styles.dart';
 import '../config/colors.dart';
@@ -28,7 +29,7 @@ class WorkingProcess extends StatelessWidget {
                   child: __buildProcess(
                       context,
                       '01.',
-                      Icons.architecture_outlined,
+                      FontAwesomeIcons.draftingCompass,
                       'Planning',
                       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor laboris nisi ut aliquip ex ea commodo.'),
                 ),
@@ -37,13 +38,17 @@ class WorkingProcess extends StatelessWidget {
                   child: __buildProcess(
                       context,
                       '02.',
-                      Icons.design_services,
+                      FontAwesomeIcons.pencilRuler,
                       'Design',
                       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor laboris nisi ut aliquip ex ea commodo.'),
                 ),
                 const SizedBox(width: 10),
                 Expanded(
-                  child: __buildProcess(context, '03.', Icons.code, 'Code',
+                  child: __buildProcess(
+                      context,
+                      '03.',
+                      FontAwesomeIcons.code,
+                      'Code',
                       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor laboris nisi ut aliquip ex ea commodo.'),
                 )
               ],
@@ -71,14 +76,18 @@ class WorkingProcess extends StatelessWidget {
             __buildProcess(
                 context,
                 '01.',
-                Icons.architecture_outlined,
+                FontAwesomeIcons.draftingCompass,
                 'Planning',
                 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor laboris nisi ut aliquip ex ea commodo.'),
             const SizedBox(height: 10),
-            __buildProcess(context, '02.', Icons.design_services, 'Design',
+            __buildProcess(
+                context,
+                '02.',
+                FontAwesomeIcons.pencilRuler,
+                'Design',
                 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor laboris nisi ut aliquip ex ea commodo.'),
             const SizedBox(height: 10),
-            __buildProcess(context, '03.', Icons.code, 'Code',
+            __buildProcess(context, '03.', FontAwesomeIcons.code, 'Code',
                 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor laboris nisi ut aliquip ex ea commodo.'),
           ],
         ),
@@ -106,12 +115,12 @@ class WorkingProcess extends StatelessWidget {
               ),
             ),
             Divider(color: AppColors.greyLight),
-            Icon(iconData, size: 50),
+            Icon(iconData, color: AppColors.black, size: 40),
             const SizedBox(height: 20),
             Text(
               title,
               style: TextStyle(
-                color: Colors.black54,
+                color: AppColors.black,
                 fontSize: 18,
                 fontWeight: FontWeight.w600,
               ),

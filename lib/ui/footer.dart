@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_web_portfolio/config/constants.dart';
 import 'package:flutter_web_portfolio/ui/responsive_widget.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../config/colors.dart';
 
@@ -192,45 +193,7 @@ class Footer extends StatelessWidget {
                     color: AppColors.greyLight.withOpacity(.75),
                   ),
                 ),
-                Row(
-                  children: [
-                    InkWell(
-                      onTap: () {},
-                      child: Image.asset(
-                        'images/github.png',
-                        width: 20,
-                        height: 20,
-                      ),
-                    ),
-                    const SizedBox(width: 20),
-                    InkWell(
-                      onTap: () {},
-                      child: Image.asset(
-                        'images/linkedin.png',
-                        width: 20,
-                        height: 20,
-                      ),
-                    ),
-                    const SizedBox(width: 20),
-                    InkWell(
-                      onTap: () {},
-                      child: Image.asset(
-                        'images/twitter.png',
-                        width: 20,
-                        height: 20,
-                      ),
-                    ),
-                    const SizedBox(width: 20),
-                    InkWell(
-                      onTap: () {},
-                      child: Image.asset(
-                        'images/facebook.png',
-                        width: 20,
-                        height: 20,
-                      ),
-                    ),
-                  ],
-                ),
+                Row(children: _socialMedia()),
               ],
             )
           ],
@@ -400,43 +363,7 @@ class Footer extends StatelessWidget {
             const SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                InkWell(
-                  onTap: () {},
-                  child: Image.asset(
-                    'images/github.png',
-                    width: 20,
-                    height: 20,
-                  ),
-                ),
-                const SizedBox(width: 20),
-                InkWell(
-                  onTap: () {},
-                  child: Image.asset(
-                    'images/linkedin.png',
-                    width: 20,
-                    height: 20,
-                  ),
-                ),
-                const SizedBox(width: 20),
-                InkWell(
-                  onTap: () {},
-                  child: Image.asset(
-                    'images/twitter.png',
-                    width: 20,
-                    height: 20,
-                  ),
-                ),
-                const SizedBox(width: 20),
-                InkWell(
-                  onTap: () {},
-                  child: Image.asset(
-                    'images/facebook.png',
-                    width: 20,
-                    height: 20,
-                  ),
-                ),
-              ],
+              children: _socialMedia(),
             ),
             const SizedBox(height: 20),
             Text(
@@ -470,4 +397,26 @@ class Footer extends StatelessWidget {
       ),
     );
   }
+
+  List<Widget> _socialMedia() => [
+        InkWell(
+          onTap: () {},
+          child: Icon(FontAwesomeIcons.githubSquare, color: Colors.white),
+        ),
+        const SizedBox(width: 20),
+        InkWell(
+          onTap: () {},
+          child: Icon(FontAwesomeIcons.linkedin, color: Colors.white),
+        ),
+        const SizedBox(width: 20),
+        InkWell(
+          onTap: () {},
+          child: Icon(FontAwesomeIcons.twitterSquare, color: Colors.white),
+        ),
+        const SizedBox(width: 20),
+        InkWell(
+          onTap: () {},
+          child: Icon(FontAwesomeIcons.facebookSquare, color: Colors.white),
+        ),
+      ];
 }
