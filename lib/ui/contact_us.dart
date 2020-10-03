@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_web_portfolio/config/constants.dart';
+import 'package:flutter_web_portfolio/ui/responsive_widget.dart';
 
 import '../config/styles.dart';
 import '../config/colors.dart';
@@ -7,24 +8,75 @@ import '../config/colors.dart';
 class ContactUs extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.white,
-      padding: EdgeInsets.symmetric(
-        horizontal: MediaQuery.of(context).size.width * .15,
-        vertical: 100,
+    return ResponsiveWidget(
+      desktopScreen: Container(
+        color: Colors.white,
+        padding: EdgeInsets.symmetric(
+          horizontal: MediaQuery.of(context).size.width * .15,
+          vertical: 100,
+        ),
+        child: Column(
+          children: [
+            Text('GET IN TOUCH', style: AppStyles.title),
+            Container(width: 100, height: 2, color: AppColors.yellow),
+            const SizedBox(height: 3),
+            Container(width: 75, height: 2, color: AppColors.yellow),
+            const SizedBox(height: 50),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      _buildContactInfo(
+                        Icons.mail_outline,
+                        'Mail Us:',
+                        AppConstants.mail,
+                      ),
+                      const SizedBox(height: 20),
+                      _buildContactInfo(
+                        Icons.call,
+                        'Call Us:',
+                        AppConstants.phone,
+                      ),
+                      const SizedBox(height: 20),
+                      _buildContactInfo(
+                        Icons.location_on_outlined,
+                        'Visit Us:',
+                        AppConstants.location,
+                      ),
+                    ],
+                  ),
+                ),
+                Expanded(
+                  child: _buildContactForm(context),
+                ),
+              ],
+            )
+          ],
+        ),
       ),
-      child: Column(
-        children: [
-          Text('GET IN TOUCH', style: AppStyles.title),
-          Container(width: 100, height: 2, color: AppColors.yellow),
-          const SizedBox(height: 3),
-          Container(width: 75, height: 2, color: AppColors.yellow),
-          const SizedBox(height: 50),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Expanded(
-                child: Column(
+      mobileScreen: Container(
+        color: Colors.white,
+        padding: EdgeInsets.symmetric(
+          horizontal: MediaQuery.of(context).size.width * .15,
+          vertical: 100,
+        ),
+        child: Column(
+          children: [
+            Text(
+              'GET IN TOUCH',
+              style: AppStyles.title,
+              textAlign: TextAlign.center,
+            ),
+            Container(width: 75, height: 2, color: AppColors.yellow),
+            const SizedBox(height: 3),
+            Container(width: 50, height: 2, color: AppColors.yellow),
+            const SizedBox(height: 50),
+            Column(
+              children: [
+                Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     _buildContactInfo(
@@ -46,13 +98,12 @@ class ContactUs extends StatelessWidget {
                     ),
                   ],
                 ),
-              ),
-              Expanded(
-                child: _buildContactForm(context),
-              ),
-            ],
-          )
-        ],
+                const SizedBox(height: 50),
+                _buildContactForm(context),
+              ],
+            )
+          ],
+        ),
       ),
     );
   }

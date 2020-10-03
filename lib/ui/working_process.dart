@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_web_portfolio/ui/responsive_widget.dart';
 
 import '../config/styles.dart';
 import '../config/colors.dart';
@@ -6,47 +7,81 @@ import '../config/colors.dart';
 class WorkingProcess extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.white,
-      padding: EdgeInsets.symmetric(
-        horizontal: MediaQuery.of(context).size.width * .15,
-        vertical: 100,
+    return ResponsiveWidget(
+      desktopScreen: Container(
+        color: Colors.white,
+        padding: EdgeInsets.symmetric(
+          horizontal: MediaQuery.of(context).size.width * .15,
+          vertical: 100,
+        ),
+        child: Column(
+          children: [
+            Text('WORKING PROCESS', style: AppStyles.title),
+            Container(width: 100, height: 2, color: AppColors.yellow),
+            const SizedBox(height: 3),
+            Container(width: 75, height: 2, color: AppColors.yellow),
+            const SizedBox(height: 50),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: __buildProcess(
+                      context,
+                      '01.',
+                      Icons.architecture_outlined,
+                      'Planning',
+                      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor laboris nisi ut aliquip ex ea commodo.'),
+                ),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: __buildProcess(
+                      context,
+                      '02.',
+                      Icons.design_services,
+                      'Design',
+                      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor laboris nisi ut aliquip ex ea commodo.'),
+                ),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: __buildProcess(context, '03.', Icons.code, 'Code',
+                      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor laboris nisi ut aliquip ex ea commodo.'),
+                )
+              ],
+            ),
+          ],
+        ),
       ),
-      child: Column(
-        children: [
-          Text('WORKING PROCESS', style: AppStyles.title),
-          Container(width: 100, height: 2, color: AppColors.yellow),
-          const SizedBox(height: 3),
-          Container(width: 75, height: 2, color: AppColors.yellow),
-          const SizedBox(height: 50),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Expanded(
-                child: __buildProcess(
-                    context,
-                    '01.',
-                    Icons.architecture_outlined,
-                    'Planning',
-                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor laboris nisi ut aliquip ex ea commodo.'),
-              ),
-              const SizedBox(width: 10),
-              Expanded(
-                child: __buildProcess(
-                    context,
-                    '02.',
-                    Icons.design_services,
-                    'Design',
-                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor laboris nisi ut aliquip ex ea commodo.'),
-              ),
-              const SizedBox(width: 10),
-              Expanded(
-                child: __buildProcess(context, '03.', Icons.code, 'Code',
-                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor laboris nisi ut aliquip ex ea commodo.'),
-              )
-            ],
-          ),
-        ],
+      mobileScreen: Container(
+        color: Colors.white,
+        padding: EdgeInsets.symmetric(
+          horizontal: MediaQuery.of(context).size.width * .15,
+          vertical: 50,
+        ),
+        child: Column(
+          children: [
+            Text(
+              'WORKING PROCESS',
+              style: AppStyles.title,
+              textAlign: TextAlign.center,
+            ),
+            Container(width: 75, height: 2, color: AppColors.yellow),
+            const SizedBox(height: 3),
+            Container(width: 50, height: 2, color: AppColors.yellow),
+            const SizedBox(height: 50),
+            __buildProcess(
+                context,
+                '01.',
+                Icons.architecture_outlined,
+                'Planning',
+                'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor laboris nisi ut aliquip ex ea commodo.'),
+            const SizedBox(height: 10),
+            __buildProcess(context, '02.', Icons.design_services, 'Design',
+                'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor laboris nisi ut aliquip ex ea commodo.'),
+            const SizedBox(height: 10),
+            __buildProcess(context, '03.', Icons.code, 'Code',
+                'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor laboris nisi ut aliquip ex ea commodo.'),
+          ],
+        ),
       ),
     );
   }
