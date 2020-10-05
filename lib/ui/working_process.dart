@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_web_portfolio/ui/responsive_widget.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../config/styles.dart';
 import '../config/colors.dart';
+import 'icon.dart';
 
 class WorkingProcess extends StatelessWidget {
   @override
@@ -29,8 +29,8 @@ class WorkingProcess extends StatelessWidget {
                   child: __buildProcess(
                       context,
                       '01.',
-                      FontAwesomeIcons.draftingCompass,
-                      'Planning',
+                      'icons/pencil.png',
+                      'Plan',
                       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor laboris nisi ut aliquip ex ea commodo.'),
                 ),
                 const SizedBox(width: 10),
@@ -38,7 +38,7 @@ class WorkingProcess extends StatelessWidget {
                   child: __buildProcess(
                       context,
                       '02.',
-                      FontAwesomeIcons.pencilRuler,
+                      'icons/design.png',
                       'Design',
                       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor laboris nisi ut aliquip ex ea commodo.'),
                 ),
@@ -47,7 +47,7 @@ class WorkingProcess extends StatelessWidget {
                   child: __buildProcess(
                       context,
                       '03.',
-                      FontAwesomeIcons.code,
+                      'icons/coding.png',
                       'Code',
                       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor laboris nisi ut aliquip ex ea commodo.'),
                 )
@@ -73,21 +73,13 @@ class WorkingProcess extends StatelessWidget {
             const SizedBox(height: 3),
             Container(width: 50, height: 2, color: AppColors.yellow),
             const SizedBox(height: 50),
-            __buildProcess(
-                context,
-                '01.',
-                FontAwesomeIcons.draftingCompass,
-                'Planning',
+            __buildProcess(context, '01.', 'icons/pencil.png', 'Plan',
                 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor laboris nisi ut aliquip ex ea commodo.'),
             const SizedBox(height: 10),
-            __buildProcess(
-                context,
-                '02.',
-                FontAwesomeIcons.pencilRuler,
-                'Design',
+            __buildProcess(context, '02.', 'icons/design.png', 'Design',
                 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor laboris nisi ut aliquip ex ea commodo.'),
             const SizedBox(height: 10),
-            __buildProcess(context, '03.', FontAwesomeIcons.code, 'Code',
+            __buildProcess(context, '03.', 'icons/coding.png', 'Code',
                 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor laboris nisi ut aliquip ex ea commodo.'),
           ],
         ),
@@ -95,7 +87,7 @@ class WorkingProcess extends StatelessWidget {
     );
   }
 
-  Widget __buildProcess(BuildContext context, String index, IconData iconData,
+  Widget __buildProcess(BuildContext context, String index, String iconPath,
       String title, String description) {
     return Card(
       elevation: 3,
@@ -117,14 +109,14 @@ class WorkingProcess extends StatelessWidget {
             const SizedBox(height: 10),
             Divider(color: AppColors.greyLight),
             const SizedBox(height: 10),
-            Icon(iconData, color: AppColors.black, size: 40),
+            AppIcon(iconPath, color: AppColors.black, size: 40),
             const SizedBox(height: 20),
             Text(
               title,
               style: TextStyle(
                 color: AppColors.black,
-                fontSize: 18,
-                fontWeight: FontWeight.w600,
+                fontSize: 25,
+                fontWeight: FontWeight.bold,
               ),
             ),
             const SizedBox(height: 10),

@@ -2,13 +2,13 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_web_portfolio/ui/responsive_widget.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'about.dart';
 import 'contact_us.dart';
 import 'footer.dart';
 import 'header.dart';
+import 'icon.dart';
 import 'projects.dart';
 import 'statistics.dart';
 import 'working_process.dart';
@@ -191,7 +191,6 @@ class _HomeState extends State<Home> {
                 Divider(),
                 ListTile(
                   onTap: _scrollToAbout,
-                  leading: Icon(FontAwesomeIcons.solidUserCircle),
                   title: Text(
                     'About Me',
                     style: TextStyle(fontWeight: FontWeight.bold),
@@ -199,7 +198,6 @@ class _HomeState extends State<Home> {
                 ),
                 ListTile(
                   onTap: _scrollToStatistics,
-                  leading: Icon(FontAwesomeIcons.briefcase),
                   title: Text(
                     'Experience',
                     style: TextStyle(fontWeight: FontWeight.bold),
@@ -207,7 +205,6 @@ class _HomeState extends State<Home> {
                 ),
                 ListTile(
                   onTap: _scrollToWorkingProcess,
-                  leading: Icon(FontAwesomeIcons.draftingCompass),
                   title: Text(
                     'Process',
                     style: TextStyle(fontWeight: FontWeight.bold),
@@ -215,7 +212,6 @@ class _HomeState extends State<Home> {
                 ),
                 ListTile(
                   onTap: _scrollToRecentProjects,
-                  leading: Icon(FontAwesomeIcons.tasks),
                   title: Text(
                     'Portfolio',
                     style: TextStyle(fontWeight: FontWeight.bold),
@@ -245,28 +241,40 @@ class _HomeState extends State<Home> {
                       onTap: () async {
                         launch(AppConstants.github);
                       },
-                      child: Icon(FontAwesomeIcons.githubSquare),
+                      child: AppIcon(
+                        'icons/github.png',
+                        color: AppColors.black,
+                      ),
                     ),
                     const SizedBox(width: 20),
                     InkWell(
                       onTap: () {
                         launch(AppConstants.linkedin);
                       },
-                      child: Icon(FontAwesomeIcons.linkedin),
+                      child: AppIcon(
+                        'icons/linkedin.png',
+                        color: AppColors.black,
+                      ),
                     ),
                     const SizedBox(width: 20),
                     InkWell(
                       onTap: () {
                         launch(AppConstants.twitter);
                       },
-                      child: Icon(FontAwesomeIcons.twitterSquare),
+                      child: AppIcon(
+                        'icons/twitter.png',
+                        color: AppColors.black,
+                      ),
                     ),
                     const SizedBox(width: 20),
                     InkWell(
                       onTap: () {
                         launch(AppConstants.facebook);
                       },
-                      child: Icon(FontAwesomeIcons.facebookSquare),
+                      child: AppIcon(
+                        'icons/facebook.png',
+                        color: AppColors.black,
+                      ),
                     ),
                   ],
                 ),
@@ -379,11 +387,7 @@ class _HomeState extends State<Home> {
                 ? _scrollToHeader
                 : null, // make sure user cannot click when button hidden
             mini: true,
-            child: Icon(
-              Icons.keyboard_arrow_up_sharp,
-              color: Colors.white,
-              size: 40,
-            ),
+            child: AppIcon('icons/double-up-arrow.png', size: 20),
           ),
         );
       },

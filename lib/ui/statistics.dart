@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_web_portfolio/ui/responsive_widget.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import 'icon.dart';
 
 class Statistics extends StatelessWidget {
   @override
@@ -15,12 +16,10 @@ class Statistics extends StatelessWidget {
         child:
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
           _buildStatistic(
-              context, FontAwesomeIcons.briefcase, '4+', 'Years of Experience'),
-          _buildStatistic(
-              context, FontAwesomeIcons.tasks, '10+', 'Projects Done'),
-          _buildStatistic(
-              context, FontAwesomeIcons.smileBeam, '50+', 'Happy Clients'),
-          _buildStatistic(context, FontAwesomeIcons.mugHot, '∞', 'Coffee Cups'),
+              context, 'icons/briefcase.png', '4+', 'Years of Experience'),
+          _buildStatistic(context, 'icons/menu.png', '10+', 'Projects Done'),
+          _buildStatistic(context, 'icons/happy.png', '50+', 'Happy Clients'),
+          _buildStatistic(context, 'icons/coffee.png', '∞', 'Coffee Cups'),
         ]),
       ),
       mobileScreen: Container(
@@ -31,34 +30,27 @@ class Statistics extends StatelessWidget {
         ),
         child: Column(
           children: [
-            _buildStatistic(context, FontAwesomeIcons.briefcase, '4+',
-                'Years of Experience'),
-            const SizedBox(height: 50),
             _buildStatistic(
-                context, FontAwesomeIcons.tasks, '10+', 'Projects Done'),
+                context, 'icons/briefcase.png', '4+', 'Years of Experience'),
             const SizedBox(height: 50),
-            _buildStatistic(
-                context, FontAwesomeIcons.smileBeam, '50+', 'Happy Clients'),
+            _buildStatistic(context, 'icons/menu.png', '10+', 'Projects Done'),
             const SizedBox(height: 50),
-            _buildStatistic(
-                context, FontAwesomeIcons.mugHot, '∞', 'Coffee Cups'),
+            _buildStatistic(context, 'icons/happy.png', '50+', 'Happy Clients'),
+            const SizedBox(height: 50),
+            _buildStatistic(context, 'icons/coffee.png', '∞', 'Coffee Cups'),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildStatistic(BuildContext context, IconData iconData, String total,
-      String description) {
+  Widget _buildStatistic(
+      BuildContext context, String icon, String total, String description) {
     return ResponsiveWidget(
       desktopScreen: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(
-            iconData,
-            size: 50,
-            color: Colors.white,
-          ),
+          AppIcon(icon, size: 50),
           const SizedBox(height: 5),
           Text(
             total,
@@ -82,11 +74,7 @@ class Statistics extends StatelessWidget {
       mobileScreen: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(
-            iconData,
-            size: 50,
-            color: Colors.white,
-          ),
+          AppIcon(icon, size: 40),
           const SizedBox(height: 5),
           Text(
             total,

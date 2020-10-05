@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_web_portfolio/ui/responsive_widget.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../config/constants.dart';
 import '../config/colors.dart';
+import 'icon.dart';
 
 class Footer extends StatelessWidget {
   @override
@@ -406,28 +406,28 @@ class Footer extends StatelessWidget {
           onTap: () async {
             launch(AppConstants.github);
           },
-          child: Icon(FontAwesomeIcons.githubSquare, color: Colors.white),
+          child: AppIcon('icons/github.png'),
         ),
         const SizedBox(width: 20),
         InkWell(
           onTap: () {
             launch(AppConstants.linkedin);
           },
-          child: Icon(FontAwesomeIcons.linkedin, color: Colors.white),
+          child: AppIcon('icons/linkedin.png'),
         ),
         const SizedBox(width: 20),
         InkWell(
           onTap: () {
             launch(AppConstants.twitter);
           },
-          child: Icon(FontAwesomeIcons.twitterSquare, color: Colors.white),
+          child: AppIcon('icons/twitter.png'),
         ),
         const SizedBox(width: 20),
         InkWell(
           onTap: () {
             launch(AppConstants.facebook);
           },
-          child: Icon(FontAwesomeIcons.facebookSquare, color: Colors.white),
+          child: AppIcon('icons/facebook.png'),
         ),
       ];
 }

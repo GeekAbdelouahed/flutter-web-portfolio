@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_web_portfolio/ui/icon.dart';
 import 'package:mailto/mailto.dart';
 
 import 'responsive_widget.dart';
@@ -45,19 +46,19 @@ class _ContactUsState extends State<ContactUs> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       _buildContactInfo(
-                        Icons.mail_outline,
+                        'icons/email.png',
                         'Mail Us:',
                         AppConstants.mail,
                       ),
                       const SizedBox(height: 20),
                       _buildContactInfo(
-                        Icons.call,
+                        'icons/call.png',
                         'Call Us:',
                         AppConstants.phone,
                       ),
                       const SizedBox(height: 20),
                       _buildContactInfo(
-                        Icons.location_on_outlined,
+                        'icons/pin.png',
                         'Visit Us:',
                         AppConstants.location,
                       ),
@@ -95,19 +96,19 @@ class _ContactUsState extends State<ContactUs> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     _buildContactInfo(
-                      Icons.mail_outline,
+                      'icons/email.png',
                       'Mail Us:',
                       AppConstants.mail,
                     ),
                     const SizedBox(height: 20),
                     _buildContactInfo(
-                      Icons.call,
+                      'icons/call.png',
                       'Call Us:',
                       AppConstants.phone,
                     ),
                     const SizedBox(height: 20),
                     _buildContactInfo(
-                      Icons.location_on_outlined,
+                      'icons/pin.png',
                       'Visit Us:',
                       AppConstants.location,
                     ),
@@ -123,15 +124,12 @@ class _ContactUsState extends State<ContactUs> {
     );
   }
 
-  Widget _buildContactInfo(IconData iconData, String title, String content) {
+  Widget _buildContactInfo(String imagePath, String title, String content) {
     return FittedBox(
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Icon(
-            iconData,
-            size: 20,
-          ),
+          AppIcon(imagePath, color: AppColors.black.withOpacity(.7), size: 20),
           const SizedBox(width: 10),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
