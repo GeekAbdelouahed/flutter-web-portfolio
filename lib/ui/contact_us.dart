@@ -1,11 +1,26 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_web_portfolio/config/constants.dart';
-import 'package:flutter_web_portfolio/ui/responsive_widget.dart';
+import 'dart:io';
 
+import 'package:flutter/material.dart';
+import 'package:mailto/mailto.dart';
+
+import 'responsive_widget.dart';
+import '../config/constants.dart';
 import '../config/styles.dart';
 import '../config/colors.dart';
+import '../utils/extensions.dart';
 
-class ContactUs extends StatelessWidget {
+class ContactUs extends StatefulWidget {
+  @override
+  _ContactUsState createState() => _ContactUsState();
+}
+
+class _ContactUsState extends State<ContactUs> {
+  final _formKey = GlobalKey<FormState>();
+
+  final _nameController = TextEditingController(),
+      _emailController = TextEditingController(),
+      _contentController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return ResponsiveWidget(
@@ -154,6 +169,7 @@ class ContactUs extends StatelessWidget {
         ),
         const SizedBox(height: 25),
         Form(
+          key: _formKey,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -161,6 +177,11 @@ class ContactUs extends StatelessWidget {
                 children: [
                   Expanded(
                     child: TextFormField(
+                      validator: (text) {
+                        return (text.isValidName())
+                            ? null
+                            : 'Please insert valid name!';
+                      },
                       decoration: InputDecoration(
                         hintText: 'Your Name',
                         border: OutlineInputBorder(),
@@ -170,6 +191,11 @@ class ContactUs extends StatelessWidget {
                   const SizedBox(width: 15),
                   Expanded(
                     child: TextFormField(
+                      validator: (text) {
+                        return (text.isValidEmail)
+                            ? null
+                            : 'Please insert valid email!';
+                      },
                       decoration: InputDecoration(
                         hintText: 'Your Email',
                         border: OutlineInputBorder(),
@@ -182,6 +208,11 @@ class ContactUs extends StatelessWidget {
               TextFormField(
                 minLines: 3,
                 maxLines: 10,
+                validator: (text) {
+                  return (text.isValidName(minLength: 10))
+                      ? null
+                      : 'Please insert valid message!, at least 10 characters';
+                },
                 decoration: InputDecoration(
                   hintText: 'Your Message',
                   border: OutlineInputBorder(),
@@ -193,7 +224,7 @@ class ContactUs extends StatelessWidget {
                 textColor: Colors.white,
                 padding:
                     const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
-                onPressed: () {},
+                onPressed: _sendMail,
                 child: Text('Send'),
               ),
             ],
@@ -201,5 +232,35 @@ class ContactUs extends StatelessWidget {
         )
       ],
     );
+  }
+
+  void _sendMail() async {
+    bool isValidForm = _formKey.currentState.validate();
+    if (!isValidForm) return;
+
+    final mailto = Mailto(
+      to: [AppConstants.mail],
+      subject: _nameController.text.trim(),
+      body: _contentController.text.trim(),
+    );
+
+    final server = await HttpServer.bind(InternetAddress.loopbackIPv4, 3000);
+    String renderHtml(Mailto mailto) =>
+        '''<html><head><title>mailto example</title></head><body><a href="$mailto">Open mail client</a></body></html>''';
+    await for (HttpRequest request in server) {
+      request.response
+        ..statusCode = HttpStatus.ok
+        ..headers.contentType = ContentType.html
+        ..write(renderHtml(mailto));
+      await request.response.close();
+    }
+  }
+
+  @override
+  void dispose() {
+    _nameController.dispose();
+    _emailController.dispose();
+    _contentController.dispose();
+    super.dispose();
   }
 }

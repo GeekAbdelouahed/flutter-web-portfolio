@@ -16,7 +16,7 @@ class RecentProjects extends StatelessWidget {
         ),
         child: Column(
           children: [
-            Text('RECENT PROJECTS', style: AppStyles.title),
+            Text('MY PROJECTS', style: AppStyles.title),
             Container(width: 100, height: 2, color: AppColors.yellow),
             const SizedBox(height: 3),
             Container(width: 75, height: 2, color: AppColors.yellow),
@@ -42,7 +42,7 @@ class RecentProjects extends StatelessWidget {
         child: Column(
           children: [
             Text(
-              'RECENT PROJECTS',
+              'MY PROJECTS',
               style: AppStyles.title,
               textAlign: TextAlign.center,
             ),

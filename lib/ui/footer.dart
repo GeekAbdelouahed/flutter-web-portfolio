@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_web_portfolio/config/constants.dart';
 import 'package:flutter_web_portfolio/ui/responsive_widget.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
 
+import '../config/constants.dart';
 import '../config/colors.dart';
 
 class Footer extends StatelessWidget {
@@ -150,7 +151,7 @@ class Footer extends StatelessWidget {
                           ),
                           const SizedBox(width: 7.5),
                           Text(
-                            'MY PROJECTS',
+                            'RECENT PROJECTS',
                             style: TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.w700,
@@ -331,7 +332,7 @@ class Footer extends StatelessWidget {
                     ),
                     const SizedBox(width: 7.5),
                     Text(
-                      'MY PROJECTS',
+                      'RECENT PROJECTS',
                       style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.w700,
@@ -402,22 +403,30 @@ class Footer extends StatelessWidget {
 
   List<Widget> _socialMedia() => [
         InkWell(
-          onTap: () {},
+          onTap: () async {
+            launch(AppConstants.github);
+          },
           child: Icon(FontAwesomeIcons.githubSquare, color: Colors.white),
         ),
         const SizedBox(width: 20),
         InkWell(
-          onTap: () {},
+          onTap: () {
+            launch(AppConstants.linkedin);
+          },
           child: Icon(FontAwesomeIcons.linkedin, color: Colors.white),
         ),
         const SizedBox(width: 20),
         InkWell(
-          onTap: () {},
+          onTap: () {
+            launch(AppConstants.twitter);
+          },
           child: Icon(FontAwesomeIcons.twitterSquare, color: Colors.white),
         ),
         const SizedBox(width: 20),
         InkWell(
-          onTap: () {},
+          onTap: () {
+            launch(AppConstants.facebook);
+          },
           child: Icon(FontAwesomeIcons.facebookSquare, color: Colors.white),
         ),
       ];

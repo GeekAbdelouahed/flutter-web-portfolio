@@ -2,15 +2,18 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_web_portfolio/ui/responsive_widget.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'about.dart';
 import 'contact_us.dart';
 import 'footer.dart';
 import 'header.dart';
-import 'recent_projects.dart';
+import 'projects.dart';
 import 'statistics.dart';
 import 'working_process.dart';
 import '../config/colors.dart';
+import '../config/constants.dart';
 
 class Home extends StatefulWidget {
   Home({Key key}) : super(key: key);
@@ -166,54 +169,110 @@ class _HomeState extends State<Home> {
       ),
       mobileScreen: Scaffold(
         drawer: Drawer(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              ListTile(
-                onTap: _scrollToAbout,
-                title: Text(
-                  'About Me',
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-              ),
-              ListTile(
-                onTap: _scrollToStatistics,
-                title: Text(
-                  'Experience',
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-              ),
-              ListTile(
-                onTap: _scrollToWorkingProcess,
-                title: Text(
-                  'Process',
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-              ),
-              ListTile(
-                onTap: _scrollToRecentProjects,
-                title: Text(
-                  'Portfolio',
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-              ),
-              const SizedBox(width: 20),
-              Align(
-                alignment: Alignment.center,
-                child: RaisedButton(
-                  onPressed: _scrollToContactUs,
-                  color: AppColors.yellow,
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 40,
-                    vertical: 15,
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Container(
+                  width: 100,
+                  height: 100,
+                  margin: const EdgeInsets.symmetric(vertical: 20),
+                  decoration: BoxDecoration(
+                    color: AppColors.yellow,
+                    borderRadius: BorderRadius.circular(1000),
                   ),
-                  child: Text(
-                    'Contact Me',
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(1000),
+                    child: Image.asset(
+                      'images/ouahid.png',
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+                Divider(),
+                ListTile(
+                  onTap: _scrollToAbout,
+                  leading: Icon(FontAwesomeIcons.solidUserCircle),
+                  title: Text(
+                    'About Me',
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ),
-              ),
-            ],
+                ListTile(
+                  onTap: _scrollToStatistics,
+                  leading: Icon(FontAwesomeIcons.briefcase),
+                  title: Text(
+                    'Experience',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ),
+                ListTile(
+                  onTap: _scrollToWorkingProcess,
+                  leading: Icon(FontAwesomeIcons.draftingCompass),
+                  title: Text(
+                    'Process',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ),
+                ListTile(
+                  onTap: _scrollToRecentProjects,
+                  leading: Icon(FontAwesomeIcons.tasks),
+                  title: Text(
+                    'Portfolio',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ),
+                Divider(),
+                const SizedBox(height: 20),
+                ListTile(
+                  title: RaisedButton(
+                    onPressed: _scrollToContactUs,
+                    color: AppColors.yellow,
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 40,
+                      vertical: 15,
+                    ),
+                    child: Text(
+                      'Contact Me',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 20),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    InkWell(
+                      onTap: () async {
+                        launch(AppConstants.github);
+                      },
+                      child: Icon(FontAwesomeIcons.githubSquare),
+                    ),
+                    const SizedBox(width: 20),
+                    InkWell(
+                      onTap: () {
+                        launch(AppConstants.linkedin);
+                      },
+                      child: Icon(FontAwesomeIcons.linkedin),
+                    ),
+                    const SizedBox(width: 20),
+                    InkWell(
+                      onTap: () {
+                        launch(AppConstants.twitter);
+                      },
+                      child: Icon(FontAwesomeIcons.twitterSquare),
+                    ),
+                    const SizedBox(width: 20),
+                    InkWell(
+                      onTap: () {
+                        launch(AppConstants.facebook);
+                      },
+                      child: Icon(FontAwesomeIcons.facebookSquare),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 20),
+              ],
+            ),
           ),
         ),
         body: Container(
@@ -316,7 +375,9 @@ class _HomeState extends State<Home> {
           opacity: showFab ? 1 : 0,
           duration: const Duration(milliseconds: 500),
           child: FloatingActionButton(
-            onPressed: _scrollToHeader,
+            onPressed: showFab
+                ? _scrollToHeader
+                : null, // make sure user cannot click when button hidden
             mini: true,
             child: Icon(
               Icons.keyboard_arrow_up_sharp,

@@ -91,17 +91,7 @@ class About extends StatelessWidget {
                 spacing: 25,
                 runSpacing: 25,
                 runAlignment: WrapAlignment.spaceBetween,
-                children: [
-                  _buildSkill('Java'),
-                  _buildSkill('Kotlin'),
-                  _buildSkill('Dart'),
-                  _buildSkill('Php'),
-                  _buildSkill('Java Script'),
-                  _buildSkill('Flutter'),
-                  _buildSkill('NodeJs'),
-                  _buildSkill('Laravel'),
-                  _buildSkill('Git'),
-                ],
+                children: _skills(),
               ),
             ],
           ),
@@ -171,22 +161,26 @@ class About extends StatelessWidget {
                 spacing: 10,
                 runSpacing: 10,
                 runAlignment: WrapAlignment.spaceBetween,
-                children: [
-                  _buildSkill('Java'),
-                  _buildSkill('Kotlin'),
-                  _buildSkill('Dart'),
-                  _buildSkill('Php'),
-                  _buildSkill('Java Script'),
-                  _buildSkill('Flutter'),
-                  _buildSkill('NodeJs'),
-                  _buildSkill('Laravel'),
-                  _buildSkill('Git'),
-                ],
+                children: _skills(),
               ),
             ],
           ),
         ),
       );
 
-  Widget _buildSkill(String title) => Chip(label: Text(title));
+  List<Widget> _skills() => [
+        _buildSkill('Java'),
+        _buildSkill('Kotlin'),
+        _buildSkill('Dart'),
+        _buildSkill('Php'),
+        _buildSkill('Java Script'),
+        _buildSkill('Flutter'),
+        _buildSkill('NodeJs'),
+        _buildSkill('Laravel'),
+        _buildSkill('Git'),
+      ];
+
+  Widget _buildSkill(String title) => Chip(
+        label: Text(title),
+      );
 }
