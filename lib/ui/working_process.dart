@@ -114,7 +114,9 @@ class WorkingProcess extends StatelessWidget {
                 ),
               ),
             ),
+            const SizedBox(height: 10),
             Divider(color: AppColors.greyLight),
+            const SizedBox(height: 10),
             Icon(iconData, color: AppColors.black, size: 40),
             const SizedBox(height: 20),
             Text(

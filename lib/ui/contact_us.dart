@@ -109,34 +109,34 @@ class ContactUs extends StatelessWidget {
   }
 
   Widget _buildContactInfo(IconData iconData, String title, String content) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Icon(
-          iconData,
-          size: 20,
-        ),
-        const SizedBox(width: 10),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              title,
-              style: TextStyle(
-                color: AppColors.black,
-                fontWeight: FontWeight.bold,
+    return FittedBox(
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Icon(
+            iconData,
+            size: 20,
+          ),
+          const SizedBox(width: 10),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                title,
+                style: TextStyle(
+                  color: AppColors.black,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-            ),
-            const SizedBox(height: 5),
-            Text(
-              content,
-              style: TextStyle(
-                color: AppColors.black.withOpacity(.7),
+              const SizedBox(height: 5),
+              Text(
+                content,
+                style: TextStyle(color: AppColors.black.withOpacity(.7)),
               ),
-            ),
-          ],
-        )
-      ],
+            ],
+          )
+        ],
+      ),
     );
   }
 

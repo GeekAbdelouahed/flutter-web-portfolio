@@ -361,9 +361,11 @@ class Footer extends StatelessWidget {
               thickness: .5,
             ),
             const SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: _socialMedia(),
+            FittedBox(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: _socialMedia(),
+              ),
             ),
             const SizedBox(height: 20),
             Text(

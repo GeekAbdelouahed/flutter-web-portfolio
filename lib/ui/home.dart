@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_web_portfolio/ui/responsive_widget.dart';
 
@@ -27,21 +29,13 @@ class _HomeState extends State<Home> {
 
   final _scrollController = ScrollController();
 
-  bool _showUpBotton = false;
+  final _fabStream = StreamController<bool>();
 
   @override
   void initState() {
     super.initState();
     _scrollController.addListener(() {
-      if (_scrollController.offset < 500 && _showUpBotton) {
-        setState(() {
-          _showUpBotton = false;
-        });
-      } else if (_scrollController.offset >= 500 && !_showUpBotton) {
-        setState(() {
-          _showUpBotton = true;
-        });
-      }
+      _fabStream.sink.add(_scrollController.offset > 500);
     });
   }
 
@@ -168,17 +162,7 @@ class _HomeState extends State<Home> {
             ],
           ),
         ),
-        floatingActionButton: _showUpBotton
-            ? FloatingActionButton(
-                onPressed: _scrollToHeader,
-                mini: true,
-                child: Icon(
-                  Icons.keyboard_arrow_up_sharp,
-                  color: Colors.white,
-                  size: 40,
-                ),
-              )
-            : const SizedBox(),
+        floatingActionButton: _buildFab(),
       ),
       mobileScreen: Scaffold(
         drawer: Drawer(
@@ -292,17 +276,7 @@ class _HomeState extends State<Home> {
             ],
           ),
         ),
-        floatingActionButton: _showUpBotton
-            ? FloatingActionButton(
-                onPressed: _scrollToHeader,
-                mini: true,
-                child: Icon(
-                  Icons.keyboard_arrow_up_sharp,
-                  color: Colors.white,
-                  size: 40,
-                ),
-              )
-            : const SizedBox(),
+        floatingActionButton: _buildFab(),
       ),
     );
   }
@@ -332,6 +306,28 @@ class _HomeState extends State<Home> {
           child: Footer(),
         ),
       ];
+
+  Widget _buildFab() {
+    return StreamBuilder<bool>(
+      stream: _fabStream.stream,
+      builder: (_, data) {
+        final bool showFab = data.hasData && data.data;
+        return AnimatedOpacity(
+          opacity: showFab ? 1 : 0,
+          duration: const Duration(milliseconds: 500),
+          child: FloatingActionButton(
+            onPressed: _scrollToHeader,
+            mini: true,
+            child: Icon(
+              Icons.keyboard_arrow_up_sharp,
+              color: Colors.white,
+              size: 40,
+            ),
+          ),
+        );
+      },
+    );
+  }
 
   void _scrollToHeader() {
     Scrollable.ensureVisible(
@@ -373,5 +369,11 @@ class _HomeState extends State<Home> {
       _contactUsGlobaleKey.currentContext,
       duration: const Duration(seconds: 1),
     );
+  }
+
+  @override
+  void dispose() {
+    _fabStream.close();
+    super.dispose();
   }
 }
