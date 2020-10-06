@@ -86,19 +86,13 @@ class _HomeState extends State<Home> {
                   padding: EdgeInsets.only(
                     left: MediaQuery.of(context).size.width * .15,
                   ),
-                  child: Container(
-                    width: 40,
-                    height: 40,
-                    decoration: BoxDecoration(
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(1000),
+                    child: Container(
+                      width: 40,
+                      height: 40,
                       color: AppColors.yellow,
-                      borderRadius: BorderRadius.circular(1000),
-                    ),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(1000),
-                      child: Image.asset(
-                        'images/ouahid.png',
-                        fit: BoxFit.cover,
-                      ),
+                      child: Image.asset('images/ouahid.png'),
                     ),
                   ),
                 ),
@@ -298,6 +292,24 @@ class _HomeState extends State<Home> {
                 titleSpacing: 0,
                 centerTitle: true,
                 backgroundColor: Colors.transparent,
+                leading: Align(
+                  child: Builder(
+                    builder: (ctx) => InkWell(
+                      onTap: () {
+                        Scaffold.of(ctx).openDrawer();
+                      },
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(1000),
+                        child: Container(
+                          width: 40,
+                          height: 40,
+                          color: AppColors.yellow,
+                          child: Image.asset('images/ouahid.png'),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
                 flexibleSpace: Container(
                   decoration: BoxDecoration(
                     image: DecorationImage(
@@ -316,21 +328,6 @@ class _HomeState extends State<Home> {
                           Colors.transparent
                         ],
                       ),
-                    ),
-                  ),
-                ),
-                title: Container(
-                  width: 40,
-                  height: 40,
-                  decoration: BoxDecoration(
-                    color: AppColors.yellow,
-                    borderRadius: BorderRadius.circular(1000),
-                  ),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(1000),
-                    child: Image.asset(
-                      'images/ouahid.png',
-                      fit: BoxFit.cover,
                     ),
                   ),
                 ),

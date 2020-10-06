@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_web_portfolio/data/project.dart';
 import 'package:flutter_web_portfolio/ui/responsive_widget.dart';
 
 import '../config/styles.dart';
@@ -24,11 +25,7 @@ class RecentProjects extends StatelessWidget {
             Wrap(
               spacing: 20,
               runSpacing: 20,
-              children: [
-                _buildProject(context, 'images/topfood.png', Colors.red[50]),
-                _buildProject(context, 'images/omran.png', Colors.brown[50]),
-                _buildProject(context, 'images/toptaxi.png', Colors.yellow[50]),
-              ],
+              children: PROJECTS.map((p) => _buildProject(context, p)).toList(),
             ),
           ],
         ),
@@ -53,11 +50,7 @@ class RecentProjects extends StatelessWidget {
             Wrap(
               spacing: 10,
               runSpacing: 10,
-              children: [
-                _buildProject(context, 'images/topfood.png', Colors.red[50]),
-                _buildProject(context, 'images/omran.png', Colors.brown[50]),
-                _buildProject(context, 'images/toptaxi.png', Colors.yellow[50]),
-              ],
+              children: PROJECTS.map((p) => _buildProject(context, p)).toList(),
             ),
           ],
         ),
@@ -65,21 +58,24 @@ class RecentProjects extends StatelessWidget {
     );
   }
 
-  Widget _buildProject(BuildContext context, String imagePath, Color color) {
+  Widget _buildProject(
+    BuildContext context,
+    Project project,
+  ) {
     return ResponsiveWidget(
       desktopScreen: Container(
-        color: color,
+        color: AppColors.yellow.withOpacity(.1),
         padding: EdgeInsets.all(50),
         width: MediaQuery.of(context).size.width * .2,
         height: MediaQuery.of(context).size.width * .2,
-        child: Image.asset(imagePath),
+        child: Image.network(project.image),
       ),
       mobileScreen: Container(
-        color: color,
+        color: AppColors.yellow.withOpacity(.1),
         padding: const EdgeInsets.all(15),
         width: MediaQuery.of(context).size.width * .25,
         height: MediaQuery.of(context).size.width * .25,
-        child: Image.asset(imagePath),
+        child: Image.network(project.image),
       ),
     );
   }

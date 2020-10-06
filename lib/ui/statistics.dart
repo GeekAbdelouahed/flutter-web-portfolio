@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_web_portfolio/ui/responsive_widget.dart';
 
+import '../data/project.dart';
 import 'icon.dart';
 
 class Statistics extends StatelessWidget {
@@ -17,7 +18,8 @@ class Statistics extends StatelessWidget {
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
           _buildStatistic(
               context, 'icons/briefcase.png', '4+', 'Years of Experience'),
-          _buildStatistic(context, 'icons/menu.png', '10+', 'Projects Done'),
+          _buildStatistic(context, 'icons/menu.png', '${PROJECTS.length}+',
+              'Projects Done'),
           _buildStatistic(context, 'icons/happy.png', '50+', 'Happy Clients'),
           _buildStatistic(context, 'icons/coffee.png', '∞', 'Coffee Cups'),
         ]),
@@ -33,7 +35,8 @@ class Statistics extends StatelessWidget {
             _buildStatistic(
                 context, 'icons/briefcase.png', '4+', 'Years of Experience'),
             const SizedBox(height: 50),
-            _buildStatistic(context, 'icons/menu.png', '10+', 'Projects Done'),
+            _buildStatistic(context, 'icons/menu.png', '${PROJECTS.length}+',
+                'Projects Done'),
             const SizedBox(height: 50),
             _buildStatistic(context, 'icons/happy.png', '50+', 'Happy Clients'),
             const SizedBox(height: 50),
