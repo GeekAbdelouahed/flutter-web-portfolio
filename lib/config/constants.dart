@@ -14,4 +14,7 @@ mixin AppConstants {
 
   static final String facebook =
       'https://www.facebook.com/AbdelouahedMedjoudja';
+
+  static final String cv =
+      'https://drive.google.com/file/d/1L1gHsEO4nKY-_JW4dVU6Cml7RvxOP1ep/view?usp=sharing';
 }

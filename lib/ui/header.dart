@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_web_portfolio/ui/responsive_widget.dart';
+import 'package:url_launcher/url_launcher.dart';
 
+import '../config/constants.dart';
 import '../config/colors.dart';
 
 class Header extends StatelessWidget {
   final String _name = "Abdelouahed";
   final String _job = "Mobile Developer";
+  final String _description =
+      "I am developer has around 4 years experience developing mobile and web applications, using different languages and techniques.";
 
-  final String _content =
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries";
   @override
   Widget build(BuildContext context) => ResponsiveWidget(
         desktopScreen: Container(
@@ -39,7 +41,7 @@ class Header extends StatelessWidget {
               SizedBox(
                 width: MediaQuery.of(context).size.width / 2,
                 child: Text(
-                  _content,
+                  _description,
                   style: Theme.of(context).textTheme.bodyText2.copyWith(
                         color: Colors.grey[100],
                         fontSize: 17,
@@ -52,7 +54,7 @@ class Header extends StatelessWidget {
                 textColor: Colors.white,
                 padding:
                     const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
-                onPressed: () {},
+                onPressed: _downloadCV,
                 child: Text('Download CV'),
               ),
               const SizedBox(height: 100),
@@ -87,7 +89,7 @@ class Header extends StatelessWidget {
                 SizedBox(
                   width: MediaQuery.of(context).size.width,
                   child: Text(
-                    _content,
+                    _description,
                     style: Theme.of(context).textTheme.bodyText2.copyWith(
                           color: Colors.grey[100],
                           fontSize: 15,
@@ -102,7 +104,7 @@ class Header extends StatelessWidget {
                   textColor: Colors.white,
                   padding:
                       const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
-                  onPressed: () {},
+                  onPressed: _downloadCV,
                   child: Text('Download CV'),
                 ),
                 const SizedBox(height: 100),
@@ -111,4 +113,8 @@ class Header extends StatelessWidget {
           ),
         ),
       );
+
+  void _downloadCV() {
+    launch(AppConstants.cv);
+  }
 }

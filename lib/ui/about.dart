@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_web_portfolio/ui/responsive_widget.dart';
+import 'package:url_launcher/url_launcher.dart';
 
+import 'responsive_widget.dart';
+import '../data/skills.dart';
+import '../config/constants.dart';
 import '../config/styles.dart';
 import '../config/colors.dart';
 
 class About extends StatelessWidget {
   final String _avatar = 'images/ouahid.png';
-
-  final String _content =
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries";
+  final String _description =
+      "I am developer has around 4 years experience developing mobile and web applications, using different languages and techniques.";
 
   @override
   Widget build(BuildContext context) => ResponsiveWidget(
@@ -48,7 +50,7 @@ class About extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          _content,
+                          _description,
                           style: Theme.of(context).textTheme.bodyText2.copyWith(
                                 color: Colors.black.withOpacity(.7),
                                 fontSize: 17,
@@ -67,7 +69,7 @@ class About extends StatelessWidget {
                             ),
                             const SizedBox(width: 20),
                             RaisedButton(
-                              onPressed: () {},
+                              onPressed: _downloadCV,
                               color: AppColors.black,
                               textColor: Colors.white,
                               padding: const EdgeInsets.symmetric(
@@ -91,7 +93,7 @@ class About extends StatelessWidget {
                 spacing: 25,
                 runSpacing: 25,
                 runAlignment: WrapAlignment.spaceBetween,
-                children: _skills(),
+                children: SKILLS.map(_buildSkill).toList(),
               ),
             ],
           ),
@@ -126,7 +128,7 @@ class About extends StatelessWidget {
                 ),
               ),
               Text(
-                _content,
+                _description,
                 style: Theme.of(context).textTheme.bodyText2.copyWith(
                       color: Colors.black.withOpacity(.7),
                       fontSize: 13,
@@ -144,7 +146,7 @@ class About extends StatelessWidget {
               ),
               const SizedBox(height: 20),
               RaisedButton(
-                onPressed: () {},
+                onPressed: _downloadCV,
                 color: AppColors.black,
                 textColor: Colors.white,
                 padding:
@@ -160,27 +162,18 @@ class About extends StatelessWidget {
               Wrap(
                 spacing: 10,
                 runSpacing: 10,
+                alignment: WrapAlignment.center,
                 runAlignment: WrapAlignment.spaceBetween,
-                children: _skills(),
+                children: SKILLS.map(_buildSkill).toList(),
               ),
             ],
           ),
         ),
       );
 
-  List<Widget> _skills() => [
-        _buildSkill('Java'),
-        _buildSkill('Kotlin'),
-        _buildSkill('Dart'),
-        _buildSkill('Php'),
-        _buildSkill('Java Script'),
-        _buildSkill('Flutter'),
-        _buildSkill('NodeJs'),
-        _buildSkill('Laravel'),
-        _buildSkill('Git'),
-      ];
+  void _downloadCV() {
+    launch(AppConstants.cv);
+  }
 
-  Widget _buildSkill(String title) => Chip(
-        label: Text(title),
-      );
+  Widget _buildSkill(Skill skill) => Chip(label: Text(skill.name));
 }

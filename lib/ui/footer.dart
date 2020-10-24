@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_web_portfolio/ui/responsive_widget.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import 'responsive_widget.dart';
+import '../data/projects.dart';
 import '../config/constants.dart';
 import '../config/colors.dart';
 import 'icon.dart';
 
 class Footer extends StatelessWidget {
+  final String _getInTouch =
+      "You have an idea, I am here to turn your dream into real digital solution.";
+  final String _description =
+      "I am developer has around 4 years experience developing mobile and web applications, using different languages and techniques.";
+
   @override
   Widget build(BuildContext context) {
     return ResponsiveWidget(
@@ -45,7 +51,7 @@ class Footer extends StatelessWidget {
                       ),
                       const SizedBox(height: 20),
                       Text(
-                        'There are many variations of passages of Lorem Ipsum available but the that.',
+                        _getInTouch,
                         style: TextStyle(
                           color: AppColors.greyLight,
                           fontSize: 13,
@@ -127,7 +133,7 @@ class Footer extends StatelessWidget {
                       ),
                       const SizedBox(height: 20),
                       Text(
-                        'But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth.',
+                        _description,
                         style: TextStyle(
                           color: AppColors.greyLight,
                           fontSize: 13,
@@ -163,16 +169,10 @@ class Footer extends StatelessWidget {
                       Wrap(
                         spacing: 10,
                         runSpacing: 10,
-                        children: [
-                          _buildProject(
-                              context, 'images/topfood.png', Colors.red[50]),
-                          _buildProject(
-                              context, 'images/omran.png', Colors.brown[50]),
-                          _buildProject(
-                              context, 'images/toptaxi.png', Colors.yellow[50]),
-                          _buildProject(
-                              context, 'images/jibly.png', Colors.red[50]),
-                        ],
+                        children: PROJECTS
+                            .take(4)
+                            .map((p) => _buildProject(context, p))
+                            .toList(),
                       )
                     ],
                   ),
@@ -230,7 +230,7 @@ class Footer extends StatelessWidget {
                 ),
                 const SizedBox(height: 20),
                 Text(
-                  'There are many variations of passages of Lorem Ipsum available but the that.',
+                  _getInTouch,
                   style: TextStyle(
                     color: AppColors.greyLight,
                     fontSize: 13,
@@ -310,7 +310,7 @@ class Footer extends StatelessWidget {
                 ),
                 const SizedBox(height: 20),
                 Text(
-                  'But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth.',
+                  _description,
                   style: TextStyle(
                     color: AppColors.greyLight,
                     fontSize: 13,
@@ -344,15 +344,10 @@ class Footer extends StatelessWidget {
                 Wrap(
                   spacing: 10,
                   runSpacing: 10,
-                  children: [
-                    _buildProject(
-                        context, 'images/topfood.png', Colors.red[50]),
-                    _buildProject(
-                        context, 'images/omran.png', Colors.brown[50]),
-                    _buildProject(
-                        context, 'images/toptaxi.png', Colors.yellow[50]),
-                    _buildProject(context, 'images/jibly.png', Colors.red[50]),
-                  ],
+                  children: PROJECTS
+                      .take(4)
+                      .map((p) => _buildProject(context, p))
+                      .toList(),
                 )
               ],
             ),
@@ -382,24 +377,27 @@ class Footer extends StatelessWidget {
     );
   }
 
-  Widget _buildProject(BuildContext context, String imagePath, Color color) {
-    return ResponsiveWidget(
-      desktopScreen: Container(
-        color: color,
-        padding: const EdgeInsets.all(25),
-        width: MediaQuery.of(context).size.width * .1,
-        height: MediaQuery.of(context).size.width * .1,
-        child: Image.asset(imagePath),
-      ),
-      mobileScreen: Container(
-        color: color,
-        padding: const EdgeInsets.all(10),
-        width: MediaQuery.of(context).size.width * .2,
-        height: MediaQuery.of(context).size.width * .2,
-        child: Image.asset(imagePath),
-      ),
-    );
-  }
+  Widget _buildProject(BuildContext context, Project project) => InkWell(
+        onTap: () {
+          launch(project.url);
+        },
+        child: ResponsiveWidget(
+          desktopScreen: Container(
+            color: AppColors.greyLight,
+            padding: const EdgeInsets.all(15),
+            width: MediaQuery.of(context).size.width * .1,
+            height: MediaQuery.of(context).size.width * .1,
+            child: Image.asset(project.image),
+          ),
+          mobileScreen: Container(
+            color: AppColors.greyLight,
+            padding: const EdgeInsets.all(15),
+            width: MediaQuery.of(context).size.width * .2,
+            height: MediaQuery.of(context).size.width * .2,
+            child: Image.asset(project.image),
+          ),
+        ),
+      );
 
   List<Widget> _socialMedia() => [
         InkWell(

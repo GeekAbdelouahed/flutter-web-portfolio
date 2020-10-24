@@ -9,7 +9,7 @@ import 'contact_us.dart';
 import 'footer.dart';
 import 'header.dart';
 import 'icon.dart';
-import 'projects.dart';
+import 'my_projects.dart';
 import 'statistics.dart';
 import 'working_process.dart';
 import '../config/colors.dart';
@@ -360,7 +360,7 @@ class _HomeState extends State<Home> {
         ),
         SliverToBoxAdapter(
           key: _recentProjectsGlobaleKey,
-          child: RecentProjects(),
+          child: MyProjects(),
         ),
         SliverToBoxAdapter(
           key: _contactUsGlobaleKey,
