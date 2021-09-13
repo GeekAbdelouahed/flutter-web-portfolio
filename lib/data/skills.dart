@@ -1,5 +1,5 @@
 class Skill {
-  final String name;
+  final String? name;
 
   Skill({this.name});
 }

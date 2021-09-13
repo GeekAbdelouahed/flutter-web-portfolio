@@ -16,7 +16,7 @@ import '../config/colors.dart';
 import '../config/constants.dart';
 
 class Home extends StatefulWidget {
-  Home({Key key}) : super(key: key);
+  Home({Key? key}) : super(key: key);
 
   @override
   _HomeState createState() => _HomeState();
@@ -375,7 +375,7 @@ class _HomeState extends State<Home> {
     return StreamBuilder<bool>(
       stream: _fabStream.stream,
       builder: (_, data) {
-        final bool showFab = data.hasData && data.data;
+        final bool showFab = data.hasData && data.data!;
         return AnimatedOpacity(
           opacity: showFab ? 1 : 0,
           duration: const Duration(milliseconds: 500),
@@ -393,42 +393,42 @@ class _HomeState extends State<Home> {
 
   void _scrollToHeader() {
     Scrollable.ensureVisible(
-      _headerGlobalKey.currentContext,
+      _headerGlobalKey.currentContext!,
       duration: const Duration(seconds: 1),
     );
   }
 
   void _scrollToAbout() {
     Scrollable.ensureVisible(
-      _aboutGlobaleKey.currentContext,
+      _aboutGlobaleKey.currentContext!,
       duration: const Duration(seconds: 1),
     );
   }
 
   void _scrollToStatistics() {
     Scrollable.ensureVisible(
-      _statisticsGlobaleKey.currentContext,
+      _statisticsGlobaleKey.currentContext!,
       duration: const Duration(seconds: 1),
     );
   }
 
   void _scrollToWorkingProcess() {
     Scrollable.ensureVisible(
-      _workingProcessGlobaleKye.currentContext,
+      _workingProcessGlobaleKye.currentContext!,
       duration: const Duration(seconds: 1),
     );
   }
 
   void _scrollToRecentProjects() {
     Scrollable.ensureVisible(
-      _recentProjectsGlobaleKey.currentContext,
+      _recentProjectsGlobaleKey.currentContext!,
       duration: const Duration(seconds: 1),
     );
   }
 
   void _scrollToContactUs() {
     Scrollable.ensureVisible(
-      _contactUsGlobaleKey.currentContext,
+      _contactUsGlobaleKey.currentContext!,
       duration: const Duration(seconds: 1),
     );
   }

@@ -51,7 +51,7 @@ class About extends StatelessWidget {
                         ),
                         Text(
                           _description,
-                          style: Theme.of(context).textTheme.bodyText2.copyWith(
+                          style: Theme.of(context).textTheme.bodyText2!.copyWith(
                                 color: Colors.black.withOpacity(.7),
                                 fontSize: 17,
                               ),
@@ -129,7 +129,7 @@ class About extends StatelessWidget {
               ),
               Text(
                 _description,
-                style: Theme.of(context).textTheme.bodyText2.copyWith(
+                style: Theme.of(context).textTheme.bodyText2!.copyWith(
                       color: Colors.black.withOpacity(.7),
                       fontSize: 13,
                     ),
@@ -175,5 +175,5 @@ class About extends StatelessWidget {
     launch(AppConstants.cv);
   }
 
-  Widget _buildSkill(Skill skill) => Chip(label: Text(skill.name));
+  Widget _buildSkill(Skill skill) => Chip(label: Text(skill.name!));
 }

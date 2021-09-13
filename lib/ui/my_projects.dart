@@ -63,7 +63,7 @@ class MyProjects extends StatelessWidget {
                 children: [
                   SizedBox(
                     height: MediaQuery.of(context).size.width * .3,
-                    child: Image.asset(project.image),
+                    child: Image.asset(project.image!),
                   ),
                   SizedBox(width: MediaQuery.of(context).size.width * .075),
                   Expanded(
@@ -73,17 +73,17 @@ class MyProjects extends StatelessWidget {
                         SizedBox(
                           height: MediaQuery.of(context).size.width * .01,
                         ),
-                        Text(project.name, style: AppStyles.title),
+                        Text(project.name!, style: AppStyles.title),
                         SizedBox(
                           height: MediaQuery.of(context).size.width * .01,
                         ),
-                        Text(project.description),
+                        Text(project.description!),
                         SizedBox(
                           height: MediaQuery.of(context).size.width * .025,
                         ),
                         Wrap(
                           spacing: 10,
-                          children: project.skills
+                          children: project.skills!
                               .map((s) => Chip(label: Text(s)))
                               .toList(),
                         ),
@@ -92,12 +92,12 @@ class MyProjects extends StatelessWidget {
                         ),
                         OutlineButton(
                           onPressed: () {
-                            launch(project.url);
+                            launch(project.url!);
                           },
                           color: AppColors.yellow,
                           textColor: AppColors.yellow,
                           borderSide: BorderSide(
-                            color: AppColors.yellow.withOpacity(.5),
+                            color: AppColors.yellow!.withOpacity(.5),
                             width: 5,
                           ),
                           padding: const EdgeInsets.symmetric(
@@ -128,18 +128,18 @@ class MyProjects extends StatelessWidget {
             children: [
               SizedBox(
                 height: MediaQuery.of(context).size.width * .75,
-                child: Image.asset(project.image),
+                child: Image.asset(project.image!),
               ),
               SizedBox(width: MediaQuery.of(context).size.width * .075),
               SizedBox(
                 height: MediaQuery.of(context).size.width * .01,
               ),
-              Text(project.name, style: AppStyles.title),
+              Text(project.name!, style: AppStyles.title),
               SizedBox(
                 height: MediaQuery.of(context).size.width * .01,
               ),
               Text(
-                project.description,
+                project.description!,
                 textAlign: TextAlign.center,
               ),
               SizedBox(
@@ -149,19 +149,19 @@ class MyProjects extends StatelessWidget {
                 spacing: 10,
                 alignment: WrapAlignment.center,
                 children:
-                    project.skills.map((s) => Chip(label: Text(s))).toList(),
+                    project.skills!.map((s) => Chip(label: Text(s))).toList(),
               ),
               SizedBox(
                 height: MediaQuery.of(context).size.width * .025,
               ),
               OutlineButton(
                 onPressed: () {
-                  launch(project.url);
+                  launch(project.url!);
                 },
                 color: AppColors.yellow,
                 textColor: AppColors.yellow,
                 borderSide: BorderSide(
-                  color: AppColors.yellow.withOpacity(.5),
+                  color: AppColors.yellow!.withOpacity(.5),
                   width: 5,
                 ),
                 padding: const EdgeInsets.symmetric(

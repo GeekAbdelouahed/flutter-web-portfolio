@@ -42,7 +42,7 @@ class Header extends StatelessWidget {
                 width: MediaQuery.of(context).size.width / 2,
                 child: Text(
                   _description,
-                  style: Theme.of(context).textTheme.bodyText2.copyWith(
+                  style: Theme.of(context).textTheme.bodyText2!.copyWith(
                         color: Colors.grey[100],
                         fontSize: 17,
                       ),
@@ -90,7 +90,7 @@ class Header extends StatelessWidget {
                   width: MediaQuery.of(context).size.width,
                   child: Text(
                     _description,
-                    style: Theme.of(context).textTheme.bodyText2.copyWith(
+                    style: Theme.of(context).textTheme.bodyText2!.copyWith(
                           color: Colors.grey[100],
                           fontSize: 15,
                           height: 1.8,
