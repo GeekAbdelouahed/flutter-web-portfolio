@@ -15,5 +15,5 @@ mixin AppConstants {
   static final String facebook =
       'https://www.facebook.com/AbdelouahedMedjoudja';
 
-  static final String cv = 'YOU-CV-URL';
+  static final String cv = 'YOUR-CV-URL'; // TODO
 }
