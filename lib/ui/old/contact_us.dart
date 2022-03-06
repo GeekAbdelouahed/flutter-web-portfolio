@@ -1,14 +1,11 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_web_portfolio/ui/icon.dart';
-import 'package:mailto/mailto.dart';
+import 'package:flutter_web_portfolio/ui/old/icon.dart';
 
-import 'responsive_widget.dart';
-import '../config/constants.dart';
-import '../config/styles.dart';
-import '../config/colors.dart';
-import '../utils/extensions.dart';
+import '../../config/colors.dart';
+import '../../config/constants.dart';
+import '../../config/styles.dart';
+import '../../utils/extensions.dart';
+import '../responsive_widget.dart';
 
 class ContactUs extends StatefulWidget {
   @override
@@ -217,41 +214,11 @@ class _ContactUsState extends State<ContactUs> {
                 ),
               ),
               const SizedBox(height: 20),
-              RaisedButton(
-                color: AppColors.yellow,
-                textColor: Colors.white,
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
-                onPressed: _sendMail,
-                child: Text('Send'),
-              ),
             ],
           ),
         )
       ],
     );
-  }
-
-  void _sendMail() async {
-    bool isValidForm = _formKey.currentState!.validate();
-    if (!isValidForm) return;
-
-    final mailto = Mailto(
-      to: [AppConstants.mail],
-      subject: _nameController.text.trim(),
-      body: _contentController.text.trim(),
-    );
-
-    final server = await HttpServer.bind(InternetAddress.loopbackIPv4, 3000);
-    String renderHtml(Mailto mailto) =>
-        '''<html><head><title>mailto example</title></head><body><a href="$mailto">Open mail client</a></body></html>''';
-    await for (HttpRequest request in server) {
-      request.response
-        ..statusCode = HttpStatus.ok
-        ..headers.contentType = ContentType.html
-        ..write(renderHtml(mailto));
-      await request.response.close();
-    }
   }
 
   @override

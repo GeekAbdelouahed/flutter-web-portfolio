@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_web_portfolio/ui/responsive_widget.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../config/constants.dart';
-import '../config/colors.dart';
+import '../../config/constants.dart';
+import '../../config/colors.dart';
 
 class Header extends StatelessWidget {
   final String _name = "Abdelouahed";

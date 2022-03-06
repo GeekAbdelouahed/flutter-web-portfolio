@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import 'responsive_widget.dart';
-import '../data/projects.dart';
-import '../config/constants.dart';
-import '../config/colors.dart';
+import '../responsive_widget.dart';
+import '../../data/projects.dart';
+import '../../config/constants.dart';
+import '../../config/colors.dart';
 import 'icon.dart';
 
 class Footer extends StatelessWidget {

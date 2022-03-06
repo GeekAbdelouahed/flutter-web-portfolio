@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import 'responsive_widget.dart';
-import '../data/skills.dart';
-import '../config/constants.dart';
-import '../config/styles.dart';
-import '../config/colors.dart';
+import '../responsive_widget.dart';
+import '../../data/skills.dart';
+import '../../config/constants.dart';
+import '../../config/styles.dart';
+import '../../config/colors.dart';
 
 class About extends StatelessWidget {
   final String _avatar = 'images/ouahid.png';

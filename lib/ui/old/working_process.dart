@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_web_portfolio/ui/responsive_widget.dart';
 
-import '../config/styles.dart';
-import '../config/colors.dart';
+import '../../config/colors.dart';
+import '../../config/styles.dart';
 import 'icon.dart';
 
 class WorkingProcess extends StatelessWidget {

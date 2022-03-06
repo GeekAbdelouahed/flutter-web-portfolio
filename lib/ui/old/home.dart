@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_web_portfolio/ui/responsive_widget.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../config/colors.dart';
+import '../../config/constants.dart';
 import 'about.dart';
 import 'contact_us.dart';
 import 'footer.dart';
@@ -12,8 +14,6 @@ import 'icon.dart';
 import 'my_projects.dart';
 import 'statistics.dart';
 import 'working_process.dart';
-import '../config/colors.dart';
-import '../config/constants.dart';
 
 class Home extends StatefulWidget {
   Home({Key? key}) : super(key: key);

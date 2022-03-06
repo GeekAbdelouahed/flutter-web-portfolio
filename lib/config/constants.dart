@@ -1,4 +1,4 @@
-mixin AppConstants {
+abstract class AppConstants {
   static final String mail = 'abdeluached@gmail.com';
 
   static final String phone = '(+213) 06 xx xx xx xx';

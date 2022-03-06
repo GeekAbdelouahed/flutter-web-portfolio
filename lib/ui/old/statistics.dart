@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../data/projects.dart';
-import 'responsive_widget.dart';
+import '../../data/projects.dart';
+import '../responsive_widget.dart';
 import 'icon.dart';
 
 class Statistics extends StatelessWidget {
