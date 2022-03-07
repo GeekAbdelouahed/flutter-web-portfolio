@@ -41,6 +41,7 @@ class _SectionWidgetState extends State<SectionWidget> {
         valueListenable: SectionModel.instance,
         child: Text(
           widget.name,
+          textAlign: TextAlign.center,
         ),
         builder: (context, data, child) {
           bool isSelected = data == widget.index;
@@ -52,6 +53,7 @@ class _SectionWidgetState extends State<SectionWidget> {
           return GestureDetector(
             onTap: widget.onTap,
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 AnimatedDefaultTextStyle(
                   duration: const Duration(milliseconds: 300),
@@ -63,11 +65,13 @@ class _SectionWidgetState extends State<SectionWidget> {
                 const SizedBox(
                   height: 5,
                 ),
-                AnimatedContainer(
-                  duration: const Duration(milliseconds: 200),
-                  width: _isHovered || isSelected ? 50 : 0,
-                  height: 1.5,
-                  color: Theme.of(context).colorScheme.secondary,
+                Align(
+                  child: AnimatedContainer(
+                    duration: const Duration(milliseconds: 200),
+                    width: _isHovered || isSelected ? 50 : 0,
+                    height: 1.5,
+                    color: Theme.of(context).colorScheme.secondary,
+                  ),
                 ),
               ],
             ),
