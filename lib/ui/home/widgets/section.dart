@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_web_portfolio/config/colors.dart';
 import 'package:flutter_web_portfolio/data/section.dart';
 
 class SectionWidget extends StatefulWidget {
@@ -46,10 +45,10 @@ class _SectionWidgetState extends State<SectionWidget> {
         builder: (context, data, child) {
           bool isSelected = data == widget.index;
           final Color? textColor = _isHovered && !isSelected
-              ? AppColors.black
+              ? style.color
               : isSelected
                   ? Theme.of(context).colorScheme.secondary
-                  : style.color;
+                  : style.color?.withOpacity(.7);
           return GestureDetector(
             onTap: widget.onTap,
             child: Column(
