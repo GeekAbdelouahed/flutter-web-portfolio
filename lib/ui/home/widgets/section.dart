@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_web_portfolio/config/colors.dart';
+import 'package:flutter_web_portfolio/data/section.dart';
 
 class SectionWidget extends StatefulWidget {
   const SectionWidget({
     Key? key,
+    required this.index,
     required this.name,
     required this.onTap,
   }) : super(key: key);
 
+  final int index;
   final String name;
   final VoidCallback onTap;
 
@@ -20,6 +24,7 @@ class _SectionWidgetState extends State<SectionWidget> {
   @override
   Widget build(BuildContext context) {
     final TextStyle style = Theme.of(context).textTheme.subtitle2!;
+
     return MouseRegion(
       cursor: SystemMouseCursors.click,
       onEnter: (event) {
@@ -32,29 +37,42 @@ class _SectionWidgetState extends State<SectionWidget> {
           _isHovered = false;
         });
       },
-      child: GestureDetector(
-        onTap: widget.onTap,
-        child: Column(
-          children: [
-            AnimatedDefaultTextStyle(
-              duration: const Duration(milliseconds: 300),
-              style: style.copyWith(
-                color: _isHovered
-                    ? Theme.of(context).colorScheme.secondary
-                    : style.color,
-              ),
-              child: Text(
-                widget.name,
-              ),
-            ),
-            AnimatedContainer(
-              duration: const Duration(milliseconds: 200),
-              width: _isHovered ? 50 : 0,
-              height: 1.5,
-              color: Theme.of(context).colorScheme.secondary,
-            ),
-          ],
+      child: ValueListenableBuilder<int>(
+        valueListenable: SectionModel.instance,
+        child: Text(
+          widget.name,
         ),
+        builder: (context, data, child) {
+          bool isSelected = data == widget.index;
+          final Color? textColor = _isHovered && !isSelected
+              ? AppColors.black
+              : isSelected
+                  ? Theme.of(context).colorScheme.secondary
+                  : style.color;
+          return GestureDetector(
+            onTap: widget.onTap,
+            child: Column(
+              children: [
+                AnimatedDefaultTextStyle(
+                  duration: const Duration(milliseconds: 300),
+                  style: style.copyWith(
+                    color: textColor,
+                  ),
+                  child: child!,
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+                AnimatedContainer(
+                  duration: const Duration(milliseconds: 200),
+                  width: _isHovered || isSelected ? 50 : 0,
+                  height: 1.5,
+                  color: Theme.of(context).colorScheme.secondary,
+                ),
+              ],
+            ),
+          );
+        },
       ),
     );
   }
