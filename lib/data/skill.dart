@@ -7,7 +7,7 @@ class Skill {
 
   final String name;
   final int percentage;
-  final String color;
+  final int color;
 
   factory Skill.fromJson(Map<String, dynamic> data) {
     return Skill(

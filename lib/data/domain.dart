@@ -7,7 +7,7 @@ class Domain {
 
   final String icon;
   final String name;
-  final String color;
+  final int color;
 
   factory Domain.fromJson(Map<String, dynamic> data) {
     return Domain(

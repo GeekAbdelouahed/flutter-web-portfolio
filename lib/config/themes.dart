@@ -28,6 +28,11 @@ abstract class AppThemes {
       subtitle2: TextStyle(
         color: AppColors.black,
       ),
+      bodyText1: TextStyle(
+        color: AppColors.black.withOpacity(.8),
+        fontSize: 15,
+        height: 1.75,
+      ),
     ),
     drawerTheme: DrawerThemeData(
       backgroundColor: AppColors.grey,

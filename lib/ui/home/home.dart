@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_web_portfolio/data/section.dart';
+import 'package:flutter_web_portfolio/data/user.dart';
+import 'package:flutter_web_portfolio/services/data.dart';
+import 'package:flutter_web_portfolio/utils/extensions.dart';
 
-import '../../utils/extensions.dart';
 import 'sections/about/about.dart';
 import 'sections/contact/contact.dart';
 import 'sections/education/education.dart';
@@ -20,6 +22,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final PageController _pageController = PageController();
+  final User _userData = DataService.getData();
 
   void _onSelectSection(int index) {
     _pageController.animateToPage(
@@ -46,22 +49,34 @@ class _HomePageState extends State<HomePage> {
               onSelectSection: _onSelectSection,
             ),
           Expanded(
-            child: PageView(
-              onPageChanged: (index) {
-                SectionModel.instance.value = index;
-              },
-              controller: _pageController,
-              pageSnapping: false,
-              scrollDirection: Axis.vertical,
-              children: [
-                AboutSection(),
-                ServicesSection(),
-                SkillsSection(),
-                EducationSection(),
-                ExperienceSection(),
-                WorkSection(),
-                ContactSection(),
-              ],
+            child: Container(
+              alignment: AlignmentDirectional.centerStart,
+              padding: const EdgeInsetsDirectional.only(
+                start: 50,
+                top: 50,
+              ),
+              child: FractionallySizedBox(
+                widthFactor: .7,
+                child: PageView(
+                  onPageChanged: (index) {
+                    SectionModel.instance.value = index;
+                  },
+                  controller: _pageController,
+                  pageSnapping: false,
+                  scrollDirection: Axis.vertical,
+                  children: [
+                    AboutSection(
+                      about: _userData.about,
+                    ),
+                    ServicesSection(),
+                    SkillsSection(),
+                    EducationSection(),
+                    ExperienceSection(),
+                    WorkSection(),
+                    ContactSection(),
+                  ],
+                ),
+              ),
             ),
           ),
         ],
