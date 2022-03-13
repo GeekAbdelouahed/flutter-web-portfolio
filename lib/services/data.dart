@@ -6,8 +6,6 @@ class DataService {
   }
 }
 
-final int _yearsOfExperience = DateTime.now().year - 2016;
-
 final Map<String, dynamic> data = {
   "about": {
     "first_name": "Abdelouahed",
@@ -17,7 +15,7 @@ final Map<String, dynamic> data = {
     "address": "end_atuggourt, Ouargla, Algeria",
     "phone": "+213 xx xx xx xx xx",
     "description":
-        "I have been in the sector of Mobile Development for like $_yearsOfExperience years now and am pretty experienced in creating apps using the best languages. I am highly proficient in coding and programming as I have a Master's degree in Computer science. Also, I am highly skilled with Flutter framework as I have handsome experience over it by building many projects. Still, I am always eager end_at learn and make my skill sharper whenever I get any chance. Above and beyond, I have a great passion for mobile and software technology as well. Worked with many companies and individuals and enjoyed the work a lot. My recruiters are always delighted with my creativity, hard-working and stamina.",
+        "I have been in the sector of Mobile Development for like ${DateTime.now().year - 2016} years now and am pretty experienced in creating apps using the best languages. I am highly proficient in coding and programming as I have a Master's degree in Computer science. Also, I am highly skilled with Flutter framework as I have handsome experience over it by building many projects. Still, I am always eager end_at learn and make my skill sharper whenever I get any chance. Above and beyond, I have a great passion for mobile and software technology as well. Worked with many companies and individuals and enjoyed the work a lot. My recruiters are always delighted with my creativity, hard-working and stamina.",
     "domains": [
       {
         "icon": "mobile-application.png",

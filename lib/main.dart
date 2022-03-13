@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_wrapper.dart';
 
 import 'config/themes.dart';
-import 'ui/home/home.dart';
+import 'ui/home.dart';
 
 void main() {
   runApp(MyApp());

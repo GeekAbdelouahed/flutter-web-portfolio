@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_web_portfolio/ui/home/widgets/section.dart';
 
-typedef OnSelectSection = void Function(int);
+import 'section.dart';
 
 class DrawerWidget extends StatelessWidget {
-  final double elevation;
-  final OnSelectSection? onSelectSection;
-
   const DrawerWidget({
     Key? key,
     this.elevation = 16.0,
     this.onSelectSection,
   }) : super(key: key);
+
+  final double elevation;
+  final ValueChanged<int>? onSelectSection;
 
   @override
   Widget build(BuildContext context) {

@@ -4,6 +4,7 @@ import 'package:flutter_web_portfolio/models/user.dart';
 import 'package:flutter_web_portfolio/services/data.dart';
 import 'package:flutter_web_portfolio/utils/extensions.dart';
 
+import 'common/drawer.dart';
 import 'sections/about/about.dart';
 import 'sections/contact/contact.dart';
 import 'sections/education/education.dart';
@@ -11,7 +12,6 @@ import 'sections/experience/experience.dart';
 import 'sections/services/services.dart';
 import 'sections/skills/skills.dart';
 import 'sections/work/work.dart';
-import 'widgets/drawer.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -68,7 +68,9 @@ class _HomePageState extends State<HomePage> {
                     AboutSection(
                       about: _userData.about,
                     ),
-                    ServicesSection(),
+                    ServicesSection(
+                      statistics: _userData.statistics,
+                    ),
                     SkillsSection(),
                     EducationSection(),
                     ExperienceSection(),

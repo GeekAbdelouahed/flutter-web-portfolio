@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_web_portfolio/models/about.dart';
+import 'package:flutter_web_portfolio/ui/common/section_header.dart';
 
 import 'widgets/domain.dart';
 
@@ -13,16 +14,9 @@ class AboutSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          'ABOUT US',
-          style: Theme.of(context).textTheme.caption,
-        ),
-        const SizedBox(
-          height: 5,
-        ),
-        Text(
-          'Who AM I?',
-          style: Theme.of(context).textTheme.headline1,
+        const SectionHeaderWidget(
+          title: 'ABOUT US',
+          subtitle: 'Who AM I?',
         ),
         const SizedBox(
           height: 30,
