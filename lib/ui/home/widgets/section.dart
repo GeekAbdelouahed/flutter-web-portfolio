@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_web_portfolio/data/section.dart';
+import 'package:flutter_web_portfolio/models/section.dart';
 
 class SectionWidget extends StatefulWidget {
   const SectionWidget({

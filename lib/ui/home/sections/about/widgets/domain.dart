@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_web_portfolio/data/domain.dart';
+import 'package:flutter_web_portfolio/models/domain.dart';
 
 class DomainWidget extends StatelessWidget {
   const DomainWidget({Key? key, required this.domain}) : super(key: key);

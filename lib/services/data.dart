@@ -1,4 +1,4 @@
-import 'package:flutter_web_portfolio/data/user.dart';
+import 'package:flutter_web_portfolio/models/user.dart';
 
 class DataService {
   static User getData() {
@@ -12,7 +12,7 @@ final Map<String, dynamic> data = {
   "about": {
     "first_name": "Abdelouahed",
     "last_name": "Medjoudja",
-    "nick_name": "Whaid",
+    "nick_name": "Wahid",
     "email": "abdeluached@gmail.com",
     "address": "end_atuggourt, Ouargla, Algeria",
     "phone": "+213 xx xx xx xx xx",

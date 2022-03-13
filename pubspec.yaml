@@ -11,6 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
 
+  responsive_framework: ^0.1.7
   url_launcher: ^6.0.10
   url_launcher_web: ^2.0.4
 

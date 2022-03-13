@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_web_portfolio/data/section.dart';
-import 'package:flutter_web_portfolio/data/user.dart';
+import 'package:flutter_web_portfolio/models/section.dart';
+import 'package:flutter_web_portfolio/models/user.dart';
 import 'package:flutter_web_portfolio/services/data.dart';
 import 'package:flutter_web_portfolio/utils/extensions.dart';
 
