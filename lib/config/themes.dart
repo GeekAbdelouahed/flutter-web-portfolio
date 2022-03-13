@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'colors.dart';
+import 'styles.dart';
 
 abstract class AppThemes {
   static ThemeData defaultTheme = ThemeData(
@@ -15,24 +16,10 @@ abstract class AppThemes {
       ),
     ),
     textTheme: TextTheme(
-      headline1: TextStyle(
-        color: AppColors.black,
-        fontSize: 30,
-        fontWeight: FontWeight.bold,
-      ),
-      headline2: TextStyle(
-        color: AppColors.black,
-        fontSize: 18,
-        fontWeight: FontWeight.bold,
-      ),
-      subtitle2: TextStyle(
-        color: AppColors.black,
-      ),
-      bodyText1: TextStyle(
-        color: AppColors.black.withOpacity(.8),
-        fontSize: 15,
-        height: 1.75,
-      ),
+      headline1: AppStyles.headline1,
+      headline2: AppStyles.headline2,
+      subtitle2: AppStyles.subtitle2,
+      bodyText1: AppStyles.bodyText1,
     ),
     drawerTheme: DrawerThemeData(
       backgroundColor: AppColors.grey,
