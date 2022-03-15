@@ -57,7 +57,7 @@ final Map<String, dynamic> data = {
     },
     {
       "name": "Git",
-      "percentage": 99,
+      "percentage": 90,
       "color": 0xffec5453,
     },
     {
@@ -67,7 +67,7 @@ final Map<String, dynamic> data = {
     },
     {
       "name": "Clean code",
-      "percentage": 80,
+      "percentage": 90,
       "color": 0xff4054b2,
     },
     {
