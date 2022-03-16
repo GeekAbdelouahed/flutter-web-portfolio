@@ -74,7 +74,9 @@ class _HomePageState extends State<HomePage> {
                     SkillsSection(
                       skills: _userData.skills,
                     ),
-                    EducationSection(),
+                    EducationSection(
+                      educations: _userData.education,
+                    ),
                     ExperienceSection(),
                     WorkSection(),
                     ContactSection(),

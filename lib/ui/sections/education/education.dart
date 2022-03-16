@@ -1,18 +1,43 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_web_portfolio/models/education.dart';
 
 class EducationSection extends StatelessWidget {
-  const EducationSection({Key? key}) : super(key: key);
+  const EducationSection({
+    Key? key,
+    required this.educations,
+  }) : super(key: key);
+
+  final List<Education> educations;
 
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text('EDUCATION'),
         const SizedBox(
           height: 30,
         ),
-        Text(
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'),
+        ListView.separated(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          itemCount: educations.length,
+          itemBuilder: (context, index) {
+            return ListTile(
+              title: Text(educations[index].degree),
+              subtitle: Text(educations[index].institute),
+              trailing: Text(
+                '${educations[index].startAt} - ${educations[index].endAt}',
+                style: Theme.of(context).textTheme.caption,
+              ),
+            );
+          },
+          separatorBuilder: (context, index) {
+            return const Divider(
+              height: 10,
+            );
+          },
+        ),
       ],
     );
   }
