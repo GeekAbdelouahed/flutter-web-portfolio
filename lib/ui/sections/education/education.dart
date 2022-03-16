@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_web_portfolio/models/education.dart';
+import 'package:flutter_web_portfolio/ui/common/section_header.dart';
 
 class EducationSection extends StatelessWidget {
   const EducationSection({
@@ -14,7 +15,10 @@ class EducationSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('EDUCATION'),
+        const SectionHeaderWidget(
+          title: 'EDUCATION',
+          subtitle: 'EDUCATION',
+        ),
         const SizedBox(
           height: 30,
         ),

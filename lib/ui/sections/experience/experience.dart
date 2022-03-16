@@ -1,18 +1,47 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_web_portfolio/models/experience.dart';
+import 'package:flutter_web_portfolio/ui/common/section_header.dart';
 
 class ExperienceSection extends StatelessWidget {
-  const ExperienceSection({Key? key}) : super(key: key);
+  const ExperienceSection({
+    Key? key,
+    required this.experiences,
+  }) : super(key: key);
+
+  final List<Experience> experiences;
 
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('EXPERIENCE'),
+        const SectionHeaderWidget(
+          title: 'EXPERIENCE',
+          subtitle: 'WORK EXPERIENCE',
+        ),
         const SizedBox(
           height: 30,
         ),
-        Text(
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'),
+        ListView.separated(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          itemCount: experiences.length,
+          itemBuilder: (context, index) {
+            return ListTile(
+              title: Text(experiences[index].name),
+              subtitle: Text(experiences[index].company),
+              trailing: Text(
+                '${experiences[index].startAt} - ${experiences[index].endAt ?? 'present'}',
+                style: Theme.of(context).textTheme.caption,
+              ),
+            );
+          },
+          separatorBuilder: (context, index) {
+            return const Divider(
+              height: 10,
+            );
+          },
+        ),
       ],
     );
   }

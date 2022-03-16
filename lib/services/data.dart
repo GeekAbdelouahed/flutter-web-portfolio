@@ -100,10 +100,10 @@ final Map<String, dynamic> data = {
     },
     {
       "name": "Senior Mobile Developer",
-      "type": "Contract",
-      "company": "International end_atp Services",
+      "type": "Freelance",
+      "company": "International Top Services",
       "location": "Algeria",
-      "start_at": "2021/04",
+      "start_at": "2018/04",
     },
     {
       "name": "Mobile Developer",
@@ -128,13 +128,6 @@ final Map<String, dynamic> data = {
       "location": "Algeria",
       "start_at": "2017/01",
       "end_at": "2018/05",
-    },
-    {
-      "name": "Mobile Developer",
-      "type": "Freelance",
-      "company": "International end_atp Services",
-      "location": "Algeria",
-      "start_at": "2012/04",
     },
   ],
 };
